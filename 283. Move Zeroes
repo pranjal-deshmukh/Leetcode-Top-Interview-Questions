@@ -1,0 +1,45 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int z = 0;
+        int nz = 0;
+        int i = 0;
+        int j = 0;
+        while(i < nums.length && nums[i] != 0){
+            i++;
+        }
+        z = i;
+        while(j < nums.length && nums[j] == 0){
+            j++;
+        }
+        nz = j;
+        while(z < nums.length && nz < nums.length){
+            if(nz > z){
+                swap(z, nz, nums);
+                //z = nz;
+                int k = nz+1;
+                int l = z+1;
+                while(k < nums.length && nums[k] == 0){
+                    k++;
+                }
+                while( l < nums.length && nums[l] != 0){
+                    l++;
+                }
+                z = l;
+                nz = k; 
+             }
+            else{
+                int k = nz+1;
+                while(k < nums.length && nums[k] == 0){
+                    k++;
+                }
+                nz = k; 
+            }
+            
+        }
+    }  
+    public void swap(int z, int nz, int[] nums){
+        int temp = nums[z];
+        nums[z] = nums[nz];
+        nums[nz] = temp;
+    }
+}
