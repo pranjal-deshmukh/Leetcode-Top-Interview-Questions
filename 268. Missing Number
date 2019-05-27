@@ -1,0 +1,28 @@
+//Approach1:
+class Solution {
+    public int missingNumber(int[] nums) {
+        int missing = nums.length;
+        for(int i = 0;i < nums.length;i++){
+            missing^= i^nums[i];
+        }
+        return missing;
+    }
+}
+
+//Approach 2:
+class Solution {
+    public int missingNumber(int[] nums) {
+        int sum = findSum(nums.length);
+        for(int i = 0;i < nums.length;i++){
+            sum = sum - nums[i];
+        }
+        return sum;
+    }
+    public int findSum(int n){
+        int sum = 0;
+        for(int i = 1;i < n+1;i++){
+            sum = sum + i;
+        }
+        return sum;
+    }
+}
