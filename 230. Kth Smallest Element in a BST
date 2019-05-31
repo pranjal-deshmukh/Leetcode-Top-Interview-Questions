@@ -1,0 +1,41 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ //Approach1 :  Using Inorder Traversal:
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+      
+        return inorder(root, k);
+    }
+    public int inorder(TreeNode root, int k){
+        int count = 0;
+        Stack<TreeNode> st = new Stack<>();
+        if(root == null){
+            return -1;
+        }
+        while(true){
+            if(root != null){
+                st.push(root);
+                root = root.left;
+            }
+            else{
+                if(st.isEmpty()){
+                    break;
+                }
+                TreeNode temp = st.pop();
+                count++;
+                if(count == k){
+                    return temp.val;
+                }
+                root = temp.right;
+            }
+        }
+        return -1;
+    }
+}
