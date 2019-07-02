@@ -1,0 +1,30 @@
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        ArrayList<Integer> list = new ArrayList<>();
+        int fin = 1;
+        for(int i = 0;i < nums.length;i++){
+            fin = fin*2;
+        }
+        result.add(list);
+        for(int j = 1;j < fin;j++){
+            ArrayList<Integer> lst = new ArrayList<>();
+            for(int i = 0;i < toBinary(j).size();i++){
+                if(toBinary(j).get(i) == 1){
+                    lst.add(nums[i]);
+                }
+            }
+            result.add(lst);
+            
+        }
+        return result;
+    }
+    public List<Integer> toBinary(int num){
+        List<Integer> list = new ArrayList<>();
+        while(num > 0){
+            list.add(num % 2);
+            num = num/2;
+        }
+        return list;
+    }
+}
